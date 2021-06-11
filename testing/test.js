@@ -2,15 +2,24 @@
   "use strict";
 
   function init() {
-    document.addEventListener("paste", renderPaste);
-    let clipboard = new ClipboardJS("#copy-btn", {
-      target: (_) => id("paste-container"),
-    });
+    id("copy-btn").addEventListener("click", sendCopy);
+    id("html-content").addEventListener("copy", receiveCopy);
+  }
 
-    clipboard.on("success", (e) => {
-      e.clearSelection();
-      displayMessage("Copied!");
-    });
+  function receiveCopy(e) {
+    e.preventDefault();
+    e.clipboardData.setData("text/html", id("html-content").value);
+  }
+
+  function sendCopy(_) {
+    if (window.getSelection()) window.getSelection().removeAllRanges();
+
+    let range = document.createRange();
+    range.selectNode(id("html-content"));
+
+    if (window.getSelection()) window.getSelection().addRange(range);
+
+    document.execCommand("copy");
   }
 
   function renderPaste(e) {
