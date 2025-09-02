@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/calendar.css">
+    <title>Schedule -- Ethan Ordentlich</title>
+
+    <script src="js/fullcalendar/dist/index.global.min.js"></script>
+    <script src="js/fullcalendar/google-calendar/index.global.min.js"></script>
+
+    <!-- TODO: detect if phone, and set view to timeGridDay -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        let calendarEl = document.getElementById("calendar");
+        let calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'timeGridWeek',
+          height: '800px',
+          eventDataTransform: function(event) {
+            event.title = event.title || 'Busy';
+            event.url = '';
+          },
+          displayEventTime: true,
+          displayEventEnd: true,
+          nowIndicator: true,
+          googleCalendarApiKey: 'AIzaSyBrIwhwFV-4aWqD3maKeaTRvQsYIoFt6pQ',
+          headerToolbar: {
+            left: 'title',
+            right: 'today prev,next timeGridDay,timeGridWeek'
+          },
+          slotMinTime: '07:00:00',
+          eventSources: [
+            {
+              color: "#FF6C0C",
+              googleCalendarId: '04d11d81f37eb59ba469d4b2a8619efac553d886fb0b58b927c9d0ea9a5de965@group.calendar.google.com',
+            }
+          ]
+        });
+        calendar.render();
+      })
+    </script>
+
+    <!--
+const urlParams = new URLSearchParams(window.location.search);
+const shouldRefresh = urlParams.get('refresh');
+
+var calendar;
+$(document).ready(function() {
+  var calendarEl = document.getElementById('calendar');
+  var scrollTime = moment().format("HH") + ":00:00";
+
+
+  calendar = new FullCalendar.Calendar(calendarEl, {
+        themeSystem: 'bootstrap',
+        height: '600px',
+        //headerToolbar: false,
+        initialView: 'timeGridWeek', // or 'agenda' or 'basic'
+        //duration: { days: 3 },
+        scrollTime: scrollTime,
+        displayEventTime: true,
+        displayEventEnd: true,
+        nowIndicator: true,
+        googleCalendarApiKey: 'AIzaSyCTOVNiwI2Pz7fvf6nOYMtY0EEZwsstJQU',
+        eventDataTransform: function(event) {
+            event.title = event.title || 'Busy';
+            event.url = '';
+        },
+      eventSources: [
+        {
+          googleCalendarId: 'colormygraph.com_ck68amhq3pg3nji64slqjgeutc@group.calendar.google.com',
+          color: '#0d7813',   // an option!
+        },
+        {
+          googleCalendarId: 'adamblan@countablethoughts.com',
+          color: '#711616',   // an option!
+        },
+        {
+          googleCalendarId: 'c_ds4t9sgrnfshfhciad3c1om9tc@group.calendar.google.com',
+          color: '#711616',   // an option!
+        },
+     ], /*events:
+        {
+          url: 'https://countablethoughts.com/callink',
+          format: 'ics',
+          color: '#711616',   // an option!
+        },
+      eventClick: function(info) {
+        info.jsEvent.preventDefault();
+      }
+      */
+  });
+
+  calendar.render();
+  if (!shouldRefresh) {
+  var inter = function(){calendar.refetchEvents(); calendar.gotoDate(moment().format()); calendar.scrollToTime(moment().format("HH") + ":00:00");}
+  setInterval(inter, 10000);
+  inter();
+  }
+});
+         -->
+  </head>
+<body>
+  <div id="calendar"></div>
+</body>
+</html>

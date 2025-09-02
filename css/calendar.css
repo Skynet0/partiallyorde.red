@@ -1,0 +1,10 @@
+body {
+  margin: 20px auto;
+  font-family: 'Atkinson Hyperlegible Next', sans-serif;
+  --fc-small-font-size: 0.9em;
+}
+
+.fc-event-time {
+  font-weight: bold;
+  /* font-family: 'Atkinson Hyperlegible Mono', monospace; */
+}
