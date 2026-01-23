@@ -18,6 +18,7 @@ body {
   max-width: 900px;
   padding: 0px 20px;
   margin: 20px auto;
+  font-size: 18px;
   font-family: 'Atkinson Hyperlegible Next', sans-serif;
   line-height: 1.4;
 }
